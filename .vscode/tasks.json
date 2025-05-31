@@ -1,0 +1,53 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install Dependencies",
+			"type": "shell",
+			"command": "pip install -r requirements.txt",
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Basic Detection",
+			"type": "shell",
+			"command": "python examples/basic_detection.py --image images/samples/carro.jpg --steps",
+			"group": "test",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Batch Processing",
+			"type": "shell",
+			"command": "python examples/batch_processing.py --input images/samples/ --output results/ --report report.json",
+			"group": "test",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Video Detection (Webcam)",
+			"type": "shell",
+			"command": "python examples/video_detection.py --camera 0",
+			"group": "test",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Create Virtual Environment",
+			"type": "shell",
+			"command": "python -m venv venv",
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Activate Virtual Environment",
+			"type": "shell",
+			"command": ".\\venv\\Scripts\\Activate.ps1",
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}
