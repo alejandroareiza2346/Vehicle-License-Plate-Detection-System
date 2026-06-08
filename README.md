@@ -1,174 +1,229 @@
-# 🚗 Sistema de Detección de Placas Vehiculares Colombianas
-
-Un sistema completo y especializado para la detección automática de placas amarillas colombianas usando OpenCV y tecnologías OCR avanzadas.
-
-## 🎯 Características Principales
-
-- ✅ **Detección Especializada**: Optimizado para placas amarillas colombianas
-- 🔍 **OCR Dual**: Soporte para Tesseract y EasyOCR
-- 📊 **Documentación Visual**: Genera 8 imágenes del proceso completo
-- ⚡ **Procesamiento Rápido**: ~1.1 segundos por imagen
-- 🛠️ **Fácil Instalación**: Script automatizado para Windows
-- 📈 **Alta Precisión**: 90%+ en condiciones óptimas
-
-## 🚀 Instalación Rápida
-
-### Windows
-```bash
-install.bat
-```
-
-### Linux/Mac
-```bash
-pip install -r requirements.txt
-```
-
-## 💻 Uso Inmediato
-
-### Detector Principal (Recomendado)
-```bash
-python leer_placa.py
-```
-**Salida esperada:**
-```
-🔍 Buscando placa amarilla...
-✅ Placa detectada en posición: (X, Y) con tamaño: WxH
-📸 Imágenes guardadas en results/
-🔍 Analizando texto de la placa...
-🎯 La placa es: JNU540
-```
-
-### Otros Analizadores
-```bash
-# Análisis detallado paso a paso
-python analizar_imagen.py
-
-# Debug y ajuste de parámetros
-python debug_deteccion.py
-
-# Detector simple
-python analizar_simple.py
-```
-
-## 📁 Estructura del Proyecto
-
-```
-placas/
-├── 📄 leer_placa.py              # ⭐ SCRIPT PRINCIPAL
-├── 📄 analizar_imagen.py         # Análisis detallado
-├── 📄 debug_deteccion.py         # Herramientas de debug
-├── 📄 install.bat                # Instalación Windows
-├── 📄 INFORME_TECNICO.md         # 📋 Documentación completa
-├── 📂 src/                       # Módulos core
-│   ├── detector.py               # Detección por contornos
-│   ├── extractor.py              # Extracción de regiones
-│   ├── ocr_reader.py             # OCR unificado
-│   └── utils.py                  # Utilidades
-├── 📂 examples/                  # Ejemplos avanzados
-│   ├── basic_detection.py        # Uso básico
-│   ├── batch_processing.py       # Procesamiento masivo
-│   └── video_detection.py        # Detección en video
-├── 📂 images/samples/            # Imágenes de prueba
-└── 📂 results/                   # 🖼️ Imágenes generadas
-    ├── 01_imagen_original.jpg
-    ├── 02_mascara_amarilla.jpg
-    ├── 03_mascara_procesada.jpg
-    ├── 04_contornos_encontrados.jpg
-    ├── 05_candidatos_placa.jpg
-    ├── 06_placa_identificada.jpg
-    ├── 07_solo_placa.jpg
-    └── 08_resultado_final.jpg
-```
-
-## 🔬 Proceso Técnico
-
-### 1. Detección por Color (HSV)
-```python
-# Rango optimizado para amarillo colombiano
-lower_yellow = [15, 100, 100]
-upper_yellow = [35, 255, 255]
-```
-
-### 2. Filtros Geométricos
-- **Área mínima**: 800 píxeles
-- **Relación aspecto**: 2.0 - 4.5 (típico placas)
-- **Dimensiones**: 80x20 píxeles mínimo
-
-### 3. OCR Inteligente
-- **Tesseract**: Texto limpio, alta velocidad
-- **EasyOCR**: Condiciones difíciles, mejor precisión
-- **Limpieza automática**: Solo letras y números
-
-## 📊 Resultados Generados
-
-El sistema documenta todo el proceso generando automáticamente:
-
-| Imagen | Descripción | Propósito |
-|--------|-------------|-----------|
-| `01_imagen_original.jpg` | Imagen redimensionada | Entrada del proceso |
-| `02_mascara_amarilla.jpg` | Detección de color | Filtro HSV amarillo |
-| `03_mascara_procesada.jpg` | Limpieza morfológica | Eliminación de ruido |
-| `04_contornos_encontrados.jpg` | Contornos detectados | Análisis geométrico |
-| `05_candidatos_placa.jpg` | Filtros aplicados | Validación de formas |
-| `06_placa_identificada.jpg` | Placa marcada | Detección confirmada |
-| `07_solo_placa.jpg` | Región extraída | Preparación para OCR |
-| `08_resultado_final.jpg` | Con texto reconocido | Resultado final |
-
-## 🎯 Casos de Uso
-
-### 🏢 Aplicaciones Comerciales
-- Control de acceso a parqueaderos
-- Sistemas de peajes automatizados
-- Seguridad en zonas restringidas
-
-### 📈 Análisis de Datos
-- Conteo vehicular automatizado
-- Análisis de patrones de tráfico
-- Auditorías de flotas vehiculares
-
-### 🔧 Desarrollo e Investigación
-- Prototipado de sistemas IoT
-- Investigación en visión por computadora
-- Proyectos académicos
-
-## ⚙️ Tecnologías
-
-| Tecnología | Versión | Propósito |
-|------------|---------|-----------|
-| **Python** | 3.8+ | Lenguaje base |
-| **OpenCV** | 4.5+ | Visión por computadora |
-| **NumPy** | 1.20+ | Operaciones numéricas |
-| **Tesseract** | 4.0+ | OCR principal |
-| **EasyOCR** | 1.6+ | OCR de respaldo |
-| **Matplotlib** | 3.3+ | Visualización |
-
-## 📋 Documentación Completa
-
-Para información técnica detallada, consultar:
-- 📄 **[INFORME_TECNICO.md](INFORME_TECNICO.md)** - Documentación completa del proyecto
-- 🔧 **Código fuente** - Módulos documentados con docstrings
-- 🖼️ **Carpeta results/** - Ejemplos visuales del proceso
-
-## 🎉 Ejemplos de Éxito
-
-**Entrada:** Imagen con placa amarilla colombiana  
-**Proceso:** 8 imágenes de análisis generadas  
-**Salida:** `🎯 La placa es: JNU540`  
-**Tiempo:** ~1.1 segundos  
-**Precisión:** 90%+ en condiciones normales  
-
-## 🤝 Contribuciones
-
-El proyecto está diseñado para ser:
-- ✅ **Extensible**: Fácil agregar nuevos detectores
-- ✅ **Mantenible**: Código modular y documentado  
-- ✅ **Configurable**: Parámetros ajustables
-- ✅ **Testeable**: Ejemplos y casos de prueba incluidos
-
-## 📄 Licencia
-
-MIT License - Uso libre para proyectos comerciales y académicos
+# Vehicle-License-Plate-Detection-System
+**Engineering Lead: Alejandro Areiza Alzate**
+**Technical Domain: Computer Vision / OCR Engineering / Automated Identification Systems**
 
 ---
 
-**🚀 ¡Listo para usar!** Simplemente ejecuta `python leer_placa.py` y observa los resultados en la carpeta `results/`
+## 1. Executive Summary and Architectural Vision
+
+This project implements a **specialized automatic license plate detection and recognition system** for Colombian yellow-background vehicle plates, built entirely on classical computer vision techniques using OpenCV and a dual-engine OCR layer. The system processes static images and video streams through an 11-stage pipeline — from raw image ingestion to cleaned alphanumeric OCR output — generating eight intermediate visual artifacts that document every transformation stage for auditing and parameter tuning. The architecture enforces a strict module boundary between the detection layer (`src/detector.py`), the region extraction layer (`src/extractor.py`), and the recognition layer (`src/ocr_reader.py`), allowing any stage to be replaced or extended independently. The pipeline is calibrated specifically to the HSV color profile of Colombian RUNT-standard yellow plates and the 3-letter / 3-digit alphanumeric format defined under Resolución 4100 of the Colombian Ministry of Transport.
+
+---
+
+## 2. Requirement Analysis and Strategic Alignment
+
+- **Functional:** Automatic detection of Colombian yellow plates from static images via HSV color segmentation followed by morphological filtering and contour analysis; region extraction and perspective normalization; dual-engine OCR with Tesseract (primary) and EasyOCR (fallback) with automatic text cleanup; generation of 8 ordered intermediate images documenting each processing stage; batch processing mode for multi-image directories; real-time video stream detection via webcam; debug mode for parameter inspection and threshold adjustment.
+- **Non-Functional:** Average end-to-end processing time of ~1.1 seconds per image on standard hardware; 90%+ detection accuracy under optimal conditions (uniform lighting, frontal angle, high resolution); zero external cloud dependencies — fully local inference; automated Windows installation via `install.bat`; minimum hardware requirements of 4GB RAM.
+- **Strategic Goal:** A production-extensible ALPR (Automatic License Plate Recognition) prototype demonstrating applied computer vision engineering with direct use cases in access control systems, automated toll infrastructure, parking management, and fleet tracking operations — applicable to any deployment requiring identification of Colombian-registered vehicles.
+
+---
+
+## 3. Technical Stack and Infrastructure
+
+- **Core Language:** Python 3.8+
+- **Computer Vision:** OpenCV 4.5+ — HSV color space conversion, morphological operations (closing, opening), contour detection and filtering, bounding box extraction, image resizing and preprocessing
+- **Numerical Computing:** NumPy 1.20+ — array-level HSV range masking, morphological kernel construction
+- **OCR Engines:** Tesseract 4.0+ (`pytesseract`) — primary engine, configured with `--psm 8` and alphanumeric character whitelist; EasyOCR 1.6+ — fallback engine for degraded conditions (poor lighting, angle distortion)
+- **Visualization:** Matplotlib 3.3+ — intermediate stage rendering; Pillow 8.0+ — image format conversion
+- **Execution Environment:** Windows (automated `install.bat`), Linux/macOS (`pip install -r requirements.txt`); optional webcam for video mode
+- **Design Pattern:** Sequential pipeline architecture — 11 discrete processing stages with explicit intermediate outputs; modular `src/` layer with four standalone modules (`detector.py`, `extractor.py`, `ocr_reader.py`, `utils.py`) callable independently of the CLI entry points
+
+---
+
+## 4. Engineering Logic and Implementation
+
+The detection pipeline processes each image through 11 sequential stages:
+
+**Stage 1 — Image Loading & Resizing (`utils.py`):** Input image is loaded via OpenCV and resized to a normalized working resolution, preserving aspect ratio. Resizing reduces computational load on subsequent operations and standardizes contour analysis across variable-resolution inputs.
+
+**Stage 2 — HSV Color Space Conversion:** The BGR image is converted to HSV color space. HSV separates chromatic information (Hue) from illumination (Value), making color-based segmentation robust to lighting variation — a critical property for outdoor plate detection.
+
+**Stage 3 — Yellow Mask Generation (`detector.py` — `ColorBasedDetector`):** A binary mask is generated by thresholding the HSV image against the calibrated Colombian yellow plate range:
+```
+lower_yellow = [15, 100, 100]   # Hue 15°, min saturation and value
+upper_yellow = [35, 255, 255]   # Hue 35°, max saturation and value
+```
+Pixels within this range are set to white; all others to black.
+
+**Stage 4 — Morphological Processing:** Two sequential morphological operations are applied on the binary mask using a 5×5 rectangular structuring element. A closing operation (dilation followed by erosion) fills small internal gaps within the yellow region. An opening operation (erosion followed by dilation) removes isolated noise pixels external to the main region. This produces a clean, solid binary mask of candidate yellow areas.
+
+**Stage 5 — Contour Detection:** OpenCV's `findContours` extracts the external boundaries of all connected white regions in the processed mask. Contours are sorted by enclosed area in descending order, prioritizing the largest candidate regions.
+
+**Stage 6 — Geometric Filtering (`detector.py` — `YellowPlateDetector`):** Each contour is evaluated against four geometric criteria derived from the physical dimensions of Colombian plates (340mm × 130mm, aspect ratio ~2.6):
+- Minimum area: 800 pixels
+- Aspect ratio: 2.0–4.5
+- Minimum dimensions: 80×20 pixels
+- Maximum dimensions: 80% of image width, 30% of image height
+
+Contours failing any criterion are discarded. The highest-area surviving candidate is selected as the plate region.
+
+**Stage 7 — Region Extraction (`extractor.py` — `PlateExtractor`):** The bounding rectangle of the selected contour is cropped from the original color image, producing an isolated plate region image.
+
+**Stage 8 — OCR Preprocessing:** The extracted plate region is converted to grayscale and passed through adaptive thresholding to produce a high-contrast binary image. This step normalizes illumination gradients across the plate surface before character recognition.
+
+**Stage 9 — Primary OCR — Tesseract (`ocr_reader.py`):** Tesseract is invoked with `--psm 8` (single word mode) and a character whitelist restricted to `ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`, preventing false positives on punctuation or non-alphanumeric symbols.
+
+**Stage 10 — Fallback OCR — EasyOCR:** If Tesseract returns an empty or malformed result (fewer than 4 characters, incorrect format), EasyOCR is invoked on the same preprocessed region. EasyOCR's deep learning-based recognizer handles distorted or low-contrast characters more robustly than Tesseract under adverse conditions.
+
+**Stage 11 — Text Cleanup & Output:** The raw OCR output is stripped of whitespace and non-alphanumeric characters. The result is validated against the Colombian plate format pattern (3 uppercase letters + 3 digits, e.g. `JNU540`). Validated output is printed to the terminal and annotated onto the result image.
+
+- **Complexity:** O(W×H) per stage for pixel-level operations; O(k) for contour filtering where k is the number of detected contours; OCR runtime is constant relative to the fixed plate region size.
+- **Data Structures:** NumPy arrays for all image representations; Python lists for contour sets; OpenCV `Rect` structures for bounding boxes.
+
+---
+
+## 5. Quality Assurance and Systematic Testing
+
+- **Analytical Testing:** HSV range parameters validated against a reference set of Colombian plate images under variable lighting conditions; geometric filter thresholds derived from physical plate dimensions specified in Resolución 4100; Tesseract character whitelist verified to exclude all non-plate characters.
+- **Constructive Testing:** End-to-end pipeline validated with sample images from `images/samples/`; batch processor (`batch_processing.py`) validated against multi-image directories with mixed plate and no-plate images; OCR fallback logic verified by testing with intentionally degraded (blurred, rotated) plate crops to confirm EasyOCR activation.
+- **Performance Benchmarks:** Processing time breakdown per stage documented in `INFORME_TECNICO.md` — image load 50ms, HSV conversion + masking 100ms, contour analysis 150ms, OCR 800ms, total ~1.1s per image on standard laptop hardware.
+- **Edge Case Handlers:** No contour passing geometric filters — system returns `"Plate not detected"` without raising an exception; OCR returning fewer than 4 characters — EasyOCR fallback activated automatically; image not found at specified path — structured `FileNotFoundError` with path context; video mode webcam unavailable — fallback to static image mode with user notification.
+
+---
+
+## 6. Security Governance and Compliance
+
+- **Data Handling:** The system processes images entirely in local memory. No image data, plate text, or detection results are transmitted to any external service. All OCR inference runs locally via Tesseract and EasyOCR. No API keys or cloud credentials are required or used.
+- **Privacy Considerations:** License plate data constitutes personal data under Colombian data protection law (Ley 1581 de 2012) when associated with vehicle owner records. This system performs detection and recognition only — it does not persist, transmit, or associate plate strings with any personal database. Any production deployment integrating this system with a vehicle registry must implement appropriate data governance controls under Ley 1581 and SIC regulatory guidance.
+- **No Dynamic Execution:** No `eval()`, `exec()`, or subprocess calls on user-supplied input. All processing paths are statically defined in the pipeline modules.
+- **OWASP Alignment:** For API or web deployments built on top of this system, mitigate A05 (Security Misconfiguration) by restricting accepted MIME types to image formats; implement A04 (Insecure Design) controls by rate-limiting plate recognition endpoints to prevent bulk enumeration of plate strings.
+
+---
+
+## 7. Deployment and Initialization
+
+**Prerequisites:** Python 3.8+; Tesseract OCR engine installed separately (see below)
+
+**Install Tesseract:**
+
+```bash
+# Windows — download installer from:
+# https://github.com/UB-Mannheim/tesseract/wiki
+
+# Ubuntu / Debian
+sudo apt install tesseract-ocr
+
+# macOS
+brew install tesseract
+```
+
+```bash
+# Clone the repository
+git clone https://github.com/alejandroareiza2346/Vehicle-License-Plate-Detection-System.git
+
+cd Vehicle-License-Plate-Detection-System
+
+# Windows — automated installation
+install.bat
+
+# Linux / macOS
+pip install -r requirements.txt
+```
+
+**Place test images:**
+
+```bash
+# Copy target images to the samples directory
+cp your_plate_image.jpg images/samples/
+```
+
+**Run the main detector:**
+
+```bash
+# Primary detector — single image with full 8-stage visual output
+python leer_placa.py
+
+# Step-by-step analysis with per-stage metrics
+python analizar_imagen.py
+
+# Parameter debug mode — adjust HSV thresholds interactively
+python debug_deteccion.py
+
+# Batch processing — process all images in a directory
+python examples/batch_processing.py
+
+# Real-time video detection via webcam
+python examples/video_detection.py
+```
+
+**Expected output:**
+
+```
+Searching for yellow plate...
+Plate detected at position: (142, 87) size: 312x118
+Images saved to results/
+Analyzing plate text...
+Plate recognized: JNU540
+```
+
+---
+
+## 8. Repository Structure
+
+```
+Vehicle-License-Plate-Detection-System/
+├── .github/                        # GitHub Actions configuration
+├── .vscode/                        # VS Code workspace settings
+├── src/
+│   ├── detector.py                 # PlateDetector, ColorBasedDetector, YellowPlateDetector
+│   ├── extractor.py                # PlateExtractor, SmartExtractor
+│   ├── ocr_reader.py               # OCRReader — unified Tesseract + EasyOCR interface
+│   └── utils.py                    # Image loading, resizing, preprocessing, save utilities
+├── examples/
+│   ├── basic_detection.py          # Single-image detection with default parameters
+│   ├── batch_processing.py         # Multi-image directory processing with report generation
+│   └── video_detection.py          # Real-time webcam detection
+├── images/
+│   └── samples/                    # Test images (place target images here)
+├── results/                        # Generated intermediate and final output images
+│   ├── 01_imagen_original.jpg
+│   ├── 02_mascara_amarilla.jpg
+│   ├── 03_mascara_procesada.jpg
+│   ├── 04_contornos_encontrados.jpg
+│   ├── 05_candidatos_placa.jpg
+│   ├── 06_placa_identificada.jpg
+│   ├── 07_solo_placa.jpg
+│   └── 08_resultado_final.jpg
+├── leer_placa.py                   # Primary CLI entry point
+├── analizar_imagen.py              # Detailed step-by-step analysis
+├── analizar_simple.py              # Minimal detection script
+├── debug_deteccion.py              # Parameter inspection and tuning tool
+├── detector_amarillo.py            # Standalone yellow detector utility
+├── test_simple.py                  # Basic functional tests
+├── install.bat                     # Automated Windows dependency installer
+├── requirements.txt                # Python dependencies
+├── INFORME_TECNICO.md              # Full technical report (Spanish)
+└── GUIA_PDF.md                     # PDF export guide
+```
+
+---
+
+## 9. Detection Performance Reference
+
+| Condition | Detection Accuracy | Notes |
+|---|---|---|
+| Uniform lighting, frontal angle, high resolution | 95% | Optimal conditions |
+| Uniform lighting, frontal angle, standard resolution | 90% | Typical use case |
+| Variable lighting, slight angle | 70% | EasyOCR fallback active |
+| Pronounced angle (>30°) | 60% | Perspective correction recommended |
+| Low resolution or motion blur | 50% | Pre-processing enhancement required |
+
+Processing time breakdown per image: load 50ms, HSV + masking 100ms, contour analysis 150ms, OCR 800ms — total ~1.1 seconds on standard laptop hardware.
+
+---
+
+## 10. Professional Background
+
+Project designed and developed by **Alejandro Areiza Alzate**, Computer Engineering student at Universidad Autónoma Latinoamericana (UNAULA), Medellín, and GitHub Developer Program member.
+
+- **LinkedIn:** [linkedin.com/in/alejandro-areiza-alzate-8a73a53b4](https://www.linkedin.com/in/alejandro-areiza-alzate-8a73a53b4)
+- **Research (ORCID):** [0009-0002-2116-6918](https://orcid.org/0009-0002-2116-6918)
+- **Certifications:** Microsoft Learn Level 6 — 26,950 XP (Azure Identity, Network Security & SQL Security); Cisco; Google; IBM; OWASP Top 10
+
+---
+
+## 11. License
+
+Distributed under the **MIT License**. See `LICENSE` for full terms.
+
+**Privacy notice:** Any production deployment of this system that associates recognized plate strings with vehicle owner records must comply with Colombian data protection law (Ley 1581 de 2012) and applicable SIC regulatory guidance.
